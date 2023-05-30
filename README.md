@@ -34,9 +34,10 @@ The recommended way of building PauliTools is as follows:
 
 3. Run tests
 
-        ./test/dla_tests
-        ./test/pauli_tests
+        ./test/run_all_tests
         
         
 ## Developers - NC State University
 - [Alexander Kemper](https://kemperlab.github.io/) - akemper@ncsu.edu
+
+### Many thanks to Roel van Beeumen for his help with CMake

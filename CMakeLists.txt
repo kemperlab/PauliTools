@@ -7,19 +7,6 @@ project( CARTAN VERSION 0.1.0 LANGUAGES CXX )
 find_package( OpenMP )
 
 
-execute_process(
-    COMMAND ping www.github.com -c 2
-    ERROR_QUIET
-    RESULT_VARIABLE NO_CONNECTION
-    )
-
-#if(NOT NO_CONNECTION EQUAL 0)
-#set(FETCHCONTEXT_FULLY_DISCONNECTED ON)
-#message(WARNING "Fetch offline mode: requires already populated _deps")
-#else()
-#set(FETCHCONTENT_FULLY_DISCONNECTED OFF)
-#endif()
-
 # fetch content
 
 include( FetchContent )
