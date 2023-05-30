@@ -40,8 +40,11 @@ add_subdirectory( src )
 # test
 add_subdirectory( test )
 
+# examples
+add_subdirectory( examples )
+
 # iterative cartan
-add_subdirectory( iterative_cartan )
+# add_subdirectory( iterative_cartan )
 
 
 
