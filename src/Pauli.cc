@@ -14,14 +14,6 @@
 
 #include "cartan/Pauli.h"
 
-    /*
-extern int Nq;
-extern long a_mask;
-extern long b_mask;
-extern bool masks_assigned;
-*/
-
-
 
 
 
@@ -82,7 +74,7 @@ void set_masks()
 
 ostream& operator<< (ostream& os, const Pauli& p)
 {
-    dump_pauli(p.code, cout);
+    dump_pauli(p.code, os);
     return os;
 }
 
@@ -117,6 +109,7 @@ bool isValidPauli(char s)
 {
     if(s=='I' or s=='-' or s=='X' or s=='Y' or s=='Z')
         return true;
+    cout << "Your character [" << s << "] is not valid." << endl;
     return false;
 }
 
@@ -198,37 +191,7 @@ void print_int_as_binary(pauli_int a, int maxbits)
         cout << bool(a & (x << i));
 }
 
-pauli_int symplectic_binary_comm(const pauli_int c1, const pauli_int c2)
-{
-    pauli_int a1 = (c1 & a_mask);
-    pauli_int b1 = (c1 & b_mask) >> Nq;
-    pauli_int a2 = (c2 & a_mask);
-    pauli_int b2 = (c2 & b_mask) >> Nq;
 
-    
-    /*
-    cout << "a1:a2 = " ;
-    print_int_as_binary(a1,Nq) ; cout << ":";
-    print_int_as_binary(a2,Nq) ; cout << "  ";
-    cout << "b1:b2 = " ;
-    print_int_as_binary(b1,Nq) ; cout << ":";
-    print_int_as_binary(b2,Nq) ; cout << endl;
-    
-    cout << "a1 & b2 = ";
-    print_int_as_binary(a1 & b2,Nq);
-    cout << endl;
-
-    cout << "a2 & b1 = ";
-    print_int_as_binary(a2 & b1,Nq);
-    cout << endl;
-    */
-
-
-    if(__builtin_parity(a1 & b2) ^ __builtin_parity(a2 & b1))
-        return c1 ^ c2;
-    else
-        return 0;
-}
 
 
 

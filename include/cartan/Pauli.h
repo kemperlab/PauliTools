@@ -4,6 +4,10 @@
 #pragma once
 #include<string>
 #include<iostream>
+#include<complex>
+#include<utility>
+
+typedef std::complex<double> cdouble;
 
 typedef uint64_t pauli_int;
 
@@ -53,7 +57,6 @@ std::ostream& operator<< (std::ostream& os, const Pauli& p);
 void dump_pauli(const pauli_int encoded_pauli, std::ostream& out);
 void print_int_as_binary(pauli_int a, int maxbits);
 void set_masks();
-pauli_int symplectic_binary_comm(const pauli_int c1, const pauli_int c2);
 
 
 int countY(pauli_int c);

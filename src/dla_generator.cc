@@ -7,6 +7,7 @@
 
 #include "cartan/Pauli.h"
 #include "cartan/dla_generator.h"
+#include "cartan/symplectic.h"
 
 #define MAX_LEVEL 40
 
@@ -14,7 +15,6 @@
     #include<omp.h>
 #endif
 
-// Add: pass in a function for the involution
 std::tuple<algebra, algebra> get_algebra_by_commuting(
         algebra* p_algebra_g, 
         algebra* p_algebra_h,
@@ -38,7 +38,6 @@ std::tuple<algebra, algebra> get_algebra_by_commuting(
         std::cout << "Using an involution" << std::endl;
         have_involution = true;
     }
-
 
     // Copy the set into a vector
     std::vector<Pauli> algebra_g_keys;
@@ -117,11 +116,12 @@ std::tuple<algebra, algebra> get_algebra_by_commuting(
                     algebra_g.insert(comm);
                     algebra_g_keys.push_back(comm);
                     terms_added++;
+
                     if(have_involution)
-                    if(is_in_k)
-                        algebra_k.insert(comm);
-                    else
-                        algebra_m.insert(comm);
+                        if(is_in_k)
+                            algebra_k.insert(comm);
+                        else
+                            algebra_m.insert(comm);
                     }
                 }
                     

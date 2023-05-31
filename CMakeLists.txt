@@ -6,6 +6,7 @@ project( CARTAN VERSION 0.1.0 LANGUAGES CXX )
 # openmp
 find_package( OpenMP )
 
+add_compile_options(-Ofast -fopenmp -std=c++20)
 
 # fetch content
 
@@ -34,8 +35,6 @@ add_subdirectory( examples )
 # add_subdirectory( iterative_cartan )
 
 
-
-SET(GCC_COVERAGE_COMPILE_FLAGS "-O3 -fopenmp")
-#SET(GCC_COVERAGE_LINK_FLAGS    "-lgcov")
-SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}")
+#SET(GCC_COVERAGE_COMPILE_FLAGS "-O3 -fopenmp -std=c++20")
+#SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}")
 

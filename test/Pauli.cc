@@ -8,6 +8,7 @@
     using namespace std;
 
 #include "cartan/Pauli.h"
+#include "cartan/symplectic.h"
 
 typedef complex<double> cdouble;
 cdouble II(0,1);
@@ -94,7 +95,7 @@ void check_involutions_3qubit()
     }
 }
 
-pair<cdouble, string> pauli_product(string p1, string p2)
+pair<cdouble, string> reference_pauli_product(string p1, string p2)
 {
     char buffer[Nq];
     cdouble prefactor = 1;
@@ -193,8 +194,52 @@ void check_symplectic_comm(vector<string>& paulis)
         }
 
         // They didn't commute, so compute the product
-        pair<cdouble, string> product = pauli_product(p1, p2);
+        pair<cdouble, string> product = reference_pauli_product(p1, p2);
         EXPECT_EQ( comm, Pauli(product.second).code);
+    }
+}
+
+
+void check_symplectic_product(vector<string>& paulis)
+{
+    setNq(4);
+
+    for(const auto& p1: paulis)
+    for(const auto& p2: paulis)
+    {
+        Pauli P1(p1);
+        Pauli P2(p2);
+        /*
+        cout << "Checking comm: " << P1 << " " << P2 << endl;
+        cout << "Checking comm: " << p1 << " " << p2 << endl;
+        cout << "P1: ";
+        print_int_as_binary(P1.code, 2*Nq);
+        cout << endl;
+        cout << "P2: ";
+        print_int_as_binary(P2.code, 2*Nq);
+        cout << endl;
+        */
+
+        // Count the number of not-same Paulis that are also
+        // not the identity
+        int count = 0 ;
+        for(int i=0; i < Nq; i++)
+        {
+            if(p1[i] == 'I' or p2[i] == 'I')
+                continue;
+
+            if(not(p1[i] == p2[i]))
+                count++;
+        }
+
+        pair<pauli_int, cdouble> comm = symplectic_binary_product(P1.code, P2.code);
+
+        // Compute the reference product
+        pair<cdouble, string> product = reference_pauli_product(p1, p2);
+        EXPECT_EQ( comm.first, Pauli(product.second).code);
+
+        // Now check the prefactor
+        EXPECT_EQ( product.first, comm.second );
     }
 }
 
@@ -207,6 +252,13 @@ TEST( pauli_test, SymplecticCommutator){
     vector<string> paulis = build_all_paulis_N4();
     check_symplectic_comm(paulis);
 }
+
+
+TEST( pauli_test, SymplecticProduct){
+    vector<string> paulis = build_all_paulis_N4();
+    check_symplectic_product(paulis);
+}
+
 
 
 

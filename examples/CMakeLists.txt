@@ -6,5 +6,11 @@ target_link_libraries( simple_dla_example PUBLIC
     )
 
 
+add_executable( paulivector_example pauli_vector.cc )
+target_link_libraries( paulivector_example PUBLIC
+    pauli
+    paulivector
+    )
+
 
 
