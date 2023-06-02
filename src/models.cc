@@ -10,7 +10,8 @@ vector<string> heisenberg(bool pbc)
     const int N = Nq;
 
     vector<string> ham;
-    char* base_string = new char[N];
+    char* base_string = new char[N+1];
+    base_string[N] = '\0';
     for(int i=0; i < N; i++)
         base_string[i] = 'I';
 
@@ -45,7 +46,8 @@ vector<string> tfxy(bool pbc)
     const int N = Nq;
 
     vector<string> ham;
-    char* base_string = new char[N];
+    char* base_string = new char[N+1];
+    base_string[N] = '\0';
     for(int i=0; i < N; i++)
         base_string[i] = 'I';
 

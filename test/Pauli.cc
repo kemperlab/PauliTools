@@ -26,7 +26,7 @@ inline bool masks_assigned = false;
 vector<string> build_all_paulis_N4()
 {
     char p_arr[] = {'I','X','Y','Z'};
-    char buffer[] = {'I','I','I','I'};
+    char buffer[] = {'I','I','I','I','\0'};
 
     vector<string> paulis;
     for(int i=0; i < 4; i++)
@@ -56,7 +56,7 @@ void check_involutions_3qubit()
     setNq(3);
 
     char p_arr[] = {'I','X','Y','Z'};
-    char buffer[] = {'I','I','I'};
+    char buffer[] = {'I','I','I','\0'};
 
     for(int i=0; i < 4; i++)
     {
@@ -97,7 +97,8 @@ void check_involutions_3qubit()
 
 pair<cdouble, string> reference_pauli_product(string p1, string p2)
 {
-    char buffer[Nq];
+    char buffer[Nq+1];
+    buffer[Nq] = '\0';
     cdouble prefactor = 1;
     for(int i=0; i < Nq; i++)
     {
