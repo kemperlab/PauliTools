@@ -1,3 +1,4 @@
+#include "cartan/Pauli.h"
 
 // Symplectic binary operations
 pauli_int symplectic_binary_comm(const pauli_int c1, const pauli_int c2);

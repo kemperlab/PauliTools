@@ -11,7 +11,7 @@
 #include "cartan/symplectic.h"
 
 typedef complex<double> cdouble;
-cdouble II(0,1);
+static cdouble II(0,1);
 
 /*
 inline int Nq = 3;

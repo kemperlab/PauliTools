@@ -6,6 +6,7 @@
 #include<iostream>
 #include<complex>
 #include<utility>
+#include<cstdint>
 
 typedef std::complex<double> cdouble;
 
