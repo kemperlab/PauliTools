@@ -16,7 +16,7 @@ add_executable ( pauli_tests Pauli.cc )
 target_link_libraries( pauli_tests PUBLIC paulitools GTest::gtest_main )
 
 add_executable( dla_tests DLA.cc )
-target_link_libraries( dla_tests PUBLIC paulitools dla models GTest::gtest_main )
+target_link_libraries( dla_tests PUBLIC dla paulitools models GTest::gtest_main )
 
 add_executable ( pauli_vector_tests PauliVector.cc )
 target_link_libraries( pauli_vector_tests PUBLIC paulitools GTest::gtest_main )
