@@ -16,6 +16,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build CMake
-      uses: ashutoshvarma/action-cmake-build@v1
+      uses: threeal/cmake-action@v1
     - name: Run Tests
       run: build/test/run_all_tests
