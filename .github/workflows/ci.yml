@@ -1,0 +1,21 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build_and_test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build CMake
+      uses: ashutoshvarma/action-cmake-build@v1
+    - name: Run Tests
+      run: build/test/run_all_tests
